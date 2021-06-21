@@ -53,3 +53,69 @@ let books = [
         published: "2014-04-07T00:00:00.000Z",
     }
 ]
+
+function exibirArrayBooks(){
+    for (let book of books) {
+        let data = new Date(book.published);
+        let dia = data.setDate(data.getDate()+1);
+        let dataFormatada = data.toLocaleDateString("pt-br");
+        document.getElementById("corpoTabela").innerHTML += `
+                <tr id="tr-tabela">
+                    <td>${book.title}</td>
+                    <td>${book.author}</td>
+                    <td>${book.isbn}</td>
+                    <td>${dataFormatada}</td>
+                    <td><button id='botao-tabela' class='botao-tabela'></button></td> 
+                </tr>
+            `
+    }
+}
+exibirArrayBooks();
+
+function exibirDadosTabela(event){
+    event.preventDefault();
+    
+    books.push({
+        isbn: document.getElementById('isbnDoLivro').value,
+        title: document.getElementById('tituloDoLivro').value,
+        author: document.getElementById('autorDoLivro').value,
+        published: document.getElementById('dataDePublicacaoDoLivro').value,
+    })
+
+    for(let book = books.length-1; book <= books.length-1; book++){
+        if(books[book].isbn === "" || books[book].title === "" || books[book].author ==="" || books[book].published ==="") {
+            alert("Os dados não foram inseridos corretamente. Tente novamente!")
+            books.pop();
+        }else{
+            let dataPublicacao = new Date(books[book].published);
+            let dia = dataPublicacao.setDate(dataPublicacao.getDate()+1);
+            let dataPublicacaoFormatada = dataPublicacao.toLocaleDateString("pt-br");
+            document.getElementById("corpoTabela").innerHTML += `
+            <tr id="tr-tabela">
+                <td>${books[book].title}</td>
+                <td>${books[book].author}</td>
+                <td>${books[book].isbn}</td>
+                <td>${dataPublicacaoFormatada}</td>
+                <td><button id='botaoTabela' class='botao-tabela'></button></td> 
+            </tr>
+        `
+        limparFormulario();
+        }
+    }
+}
+
+const limparFormulario = ()=>{
+    tituloDoLivro.value = ""
+    autorDoLivro.value = ""
+    isbnDoLivro.value = ""
+    dataDePublicacaoDoLivro.value = ""
+}
+
+const corpoTabela = document.querySelector('#corpoTabela');
+
+corpoTabela.addEventListener('click', (event)=>{
+    if (event.target.className=="botao-tabela"){
+        const botaoExcluirNovamente=event.target.parentElement
+        botaoExcluirNovamente.parentElement.remove()
+    }
+})

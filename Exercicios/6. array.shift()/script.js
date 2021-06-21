@@ -1,4 +1,9 @@
-const listagemDeFrutas = [ "Uva", "Banana", "Manga", "Cajá", "Pinha", "Maçã", "Melão"];
+// const listagemDeFrutas = [ "Uva", "Banana", "Manga", "Cajá", "Pinha", "Maçã", "Melão"];
+
+// const tirarOPrimeiroElemento = listagemDeFrutas.shift();
+
+// console.log(listagemDeFrutas);
+// console.log(tirarOPrimeiroElemento);
 
 const usuarios = [
     {user:234, name: 'Marcia', idade:40 },
@@ -8,3 +13,8 @@ const usuarios = [
     {user:238, name: 'Isis', idade:34 },
     {user:239, name: 'Pietra', idade:23 }
 ]
+
+const tirarPrimeiroUsuario = usuarios.shift();
+
+console.log(usuarios);
+console.log(tirarPrimeiroUsuario)
